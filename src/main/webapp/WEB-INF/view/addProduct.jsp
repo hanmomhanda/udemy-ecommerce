@@ -11,7 +11,8 @@
             <p class="lead">Fill the below to add product!!!</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct"
+        <%--<form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct"--%>
+        <form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct?${_csrf.parameterName}=${_csrf.token}"
                    method="post" commandName="product"
                    enctype="multipart/form-data">
         <div class="form-group">

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hanmomhanda on 16. 3. 2.
@@ -60,7 +62,10 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/productInventory/addProduct", method = RequestMethod.POST)
-    public String addProductPost(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult) {
+    public String addProductPost(@Valid @ModelAttribute("product") Product product,
+                                 BindingResult bindingResult,
+                                 HttpServletRequest request) {
+Map parameterMap = request.getParameterMap();
         if (bindingResult.hasErrors()) {
             return "addProduct";
         }

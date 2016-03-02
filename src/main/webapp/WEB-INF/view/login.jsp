@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/view/template/header.jsp" %>
 
 <div class="container-wrapper">
@@ -10,7 +11,7 @@
                 <div class="msg">${msg}</div>
             </c:if>
 
-            <form name="loginForm" action="<c:url value="/login" />" method="post">
+            <form action="<c:url value="/login" />" method="post">
 
                 <div class="form-group">
                     <label for="username">User : </label>
