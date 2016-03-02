@@ -10,10 +10,8 @@
                 <div class="msg">${msg}</div>
             </c:if>
 
-            <form name="loginForm" action="<c:url value="/j_spring_security_check" />" method="post">
-                <c:if test="${not empty error}">
-                    <div class="error">${error}</div>
-                </c:if>
+            <form name="loginForm" action="<c:url value="/login" />" method="post">
+
                 <div class="form-group">
                     <label for="username">User : </label>
                     <input type="text" id="username" name="username" class="form-control" />
@@ -23,9 +21,14 @@
                     <input type="password" id="password" name="password" class="form-control" />
                 </div>
 
-                <input type="submit" value="Submit" class="btn btn-default" />
+                <c:if test="${not empty error}">
+                    <div class="error">${error}</div>
+                </c:if>
 
                 <input type="hidden" name='${_csrf.parameterName}' value="${_csrf.token}" />
+
+                <input type="submit" value="Submit" class="btn btn-default" />
+
             </form>
 
         </div>
