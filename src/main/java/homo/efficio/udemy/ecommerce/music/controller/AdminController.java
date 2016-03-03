@@ -65,7 +65,7 @@ public class AdminController {
     public String addProductPost(@Valid @ModelAttribute("product") Product product,
                                  BindingResult bindingResult,
                                  HttpServletRequest request) {
-Map parameterMap = request.getParameterMap();
+
         if (bindingResult.hasErrors()) {
             return "addProduct";
         }
