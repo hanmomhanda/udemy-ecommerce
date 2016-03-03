@@ -63,8 +63,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/productInventory/addProduct", method = RequestMethod.POST)
     public String addProductPost(@Valid @ModelAttribute("product") Product product,
-                                 BindingResult bindingResult,
-                                 HttpServletRequest request) {
+                                 BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "addProduct";
@@ -75,6 +74,22 @@ public class AdminController {
         product.setProductImageWebPath(getImageWebDir(productImage.getOriginalFilename()));
         productDao.addProduct(product);
         return "redirect:/admin/productInventory";
+    }
+
+    private void saveToFile(MultipartFile multipartFile) {
+        Path path = getImagePath(multipartFile);
+        String imageFullPath = path.toString();
+        if (multipartFile != null && !multipartFile.isEmpty()) {
+            try {
+                multipartFile.transferTo(new File(imageFullPath));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                throw new RuntimeException("EncodingType is wrong.", e);
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Product image saving failed.", e);
+            }
+        }
     }
 
     private Path getImagePath(MultipartFile multipartFile) {
@@ -129,19 +144,4 @@ public class AdminController {
         return "redirect:/admin/productInventory";
     }
 
-    private void saveToFile(MultipartFile multipartFile) {
-        Path path = getImagePath(multipartFile);
-        String imageFullPath = path.toString();
-        if (multipartFile != null && !multipartFile.isEmpty()) {
-            try {
-                multipartFile.transferTo(new File(imageFullPath));
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-                throw new RuntimeException("EncodingType is wrong.", e);
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Product image saving failed.", e);
-            }
-        }
-    }
 }
