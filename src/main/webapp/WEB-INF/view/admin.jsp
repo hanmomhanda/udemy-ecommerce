@@ -8,11 +8,22 @@
             <p class="lead">Admin Page</p>
         </div>
 
+        <form id='logoutForm' action="<c:url value="/logout" />" method="post">
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <h2>
-                Welcome ${pageContext.request.userPrincipal.name} | <a href="<c:url value="/logout" />">Logout</a>
+                Welcome ${pageContext.request.userPrincipal.name} | <span id="logout">Logout</span>
             </h2>
         </c:if>
+            <input type="hidden" name='${_csrf.parameterName}' value="${_csrf.token}" />
+        </form>
+        <script>
+        var logout = document.querySelector('#logout');
+        logout.addEventListener('click', function(e) {
+            e.preventDefault();
+            var form = document.querySelector('#logoutForm');
+            form.submit();
+        });
+        </script>
 
         <h3><a href="<c:url value="/admin/productInventory" />">Product Inventory</a></h3>
 
