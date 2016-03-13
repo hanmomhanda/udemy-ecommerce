@@ -17,8 +17,8 @@ cartApp.controller("cartCtrl", function($scope, $http) {
         $scope.refreshCart(cartId);
     };
 
-    $scope.addToCart = function(productId) {
-        $http.put('/music/rest/cart/add' + productId).success(function(data) {
+    $scope.addToCart = function(productId, csrfValue) {
+        $http.put('/music/rest/cart/add/' + productId + "?" + $.param({_csrf: csrfValue})).success(function(data) {
             $scope.refreshCart($http.get('/music/rest/cart/cartId'));
             alert("Product successfully added to the cart!");
         });
