@@ -11,7 +11,7 @@
         <form id='logoutForm' action="<c:url value="/logout" />" method="post">
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <h2>
-                Welcome ${pageContext.request.userPrincipal.name} | <span id="logout">Logout</span>
+                Welcome ${pageContext.request.userPrincipal.name} | <a href='#' id="logout">Logout</a>
             </h2>
         </c:if>
             <input type="hidden" name='${_csrf.parameterName}' value="${_csrf.token}" />
