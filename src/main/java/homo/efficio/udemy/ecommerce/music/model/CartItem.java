@@ -2,8 +2,6 @@ package homo.efficio.udemy.ecommerce.music.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-
 /**
  * Created by hanmomhanda on 16. 3. 12.
  */

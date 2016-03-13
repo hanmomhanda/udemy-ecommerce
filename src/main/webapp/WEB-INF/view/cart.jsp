@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/view/template/header.jsp" %>
 
 <div class="container-wrapper">
@@ -16,7 +17,7 @@
         <section class="container" ng-app="cartApp">
             <div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')">
                 <div>
-                    <a class="btn btn-danger pull-left"><span class="glyphicon glyphicon-remove-sign"></span>Clear Cart</a>
+                    <a class="btn btn-danger pull-left" ng-click="clearCart()"><span class="glyphicon glyphicon-remove-sign"></span>Clear Cart</a>
                 </div>
 
                 <table class="table table-hover">
@@ -56,5 +57,6 @@
     </div>
 </div>
 
+<script src="<c:url value="/resources/static/js/controller.js" />"></script>
 
 <%@ include file="/WEB-INF/view/template/footer.jsp" %>

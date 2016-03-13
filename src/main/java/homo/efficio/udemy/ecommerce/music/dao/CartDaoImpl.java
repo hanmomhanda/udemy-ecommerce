@@ -3,6 +3,7 @@ package homo.efficio.udemy.ecommerce.music.dao;
 import homo.efficio.udemy.ecommerce.music.model.Cart;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Map;
 @Repository
 public class CartDaoImpl implements CartDao {
 
-    private Map<String, Cart> listOfCarts;
+    private Map<String, Cart> listOfCarts = new HashMap<>();
 
     public Cart create(Cart cart) {
         if (listOfCarts.keySet().contains(cart.getCartId())) {
