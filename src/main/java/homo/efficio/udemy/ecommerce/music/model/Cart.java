@@ -2,6 +2,7 @@ package homo.efficio.udemy.ecommerce.music.model;
 
 import lombok.Data;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -14,7 +15,13 @@ public class Cart {
     private Map<Long, CartItem> cartItems;
     private double grandTotal;
 
+    public Cart() {
+        this.cartItems = new HashMap<>();
+        grandTotal = 0;
+    }
+
     public Cart(String cartId) {
+        this();
         this.cartId = cartId;
     }
 
